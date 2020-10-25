@@ -5,6 +5,7 @@ const answerButtons = document.getElementById('answer-buttons');
 const questionElement = document.getElementById('question');
 const countdownTimer = document.getElementById('countdown-timer');
 const endScreen = document.getElementById('end-screen');
+const highscoreScreen = document.getElementById('highscore-screen');
 const scoreSpan = document.querySelector('#end-screen span');
 const pTag = document.getElementById('ptag');
 let timeLeft = 75;
@@ -84,8 +85,6 @@ function generateQuestion() {
   questionContainer.innerHTML = questionMarkUp;
 }
 
-//playAgainButton.addEventListener('click', playAgain);
-
 //add event listener for answers
 questionContainer.addEventListener("click", function (event) {
   //filter for answerChoice
@@ -131,20 +130,12 @@ function endQuiz() {
   //hide questions
   questionContainer.classList.add('hide');
 }
-
-// function playAgain() {
-
-// }
-
 /*ToDo:
-
-2. add event listener to the submit button
-
 
 submit button function
   //get local staory data which is a stringified array of objects
   //add new {
-    intiials: "BKL",
+    initials: "BKL",
     score: "number"
   }
   //add to local storage
@@ -155,26 +146,42 @@ submit button function
   get the local storage data
   then show it on theUI
 
-
   JSON.parse
   JSON.stringify
 
   */
 document.querySelector(".submit-btn").addEventListener("click", storeData);
+const inpKey = document.getElementById("inpKey")
+const lsOutput = document.getElementById("lsOutput")
 
 function storeData() {
   //get the input box value in a var
   var userInput = document.querySelector("#end-screen input")
   // check if input is not empty
-  if (userInput !== "") {
-    //get the old data
-    var data = JSON
-    //create the new data
+  const key = inpKey.value;
 
-    //add the new data to the old data
-
-    //store it 
-
-    //redirect the user to other html
+  if (key) {
+    localStorage.setItem(key, score);
+    location.reload()
   }
+
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+
+    lsOutput.innerHTML += `${key}: ${value}`
+  }
+  // if (userInput !== "") {
+  //   //get the old data
+  //   var localData = JSON.parse(window.localStorage.getItem("data")) || [];
+  //   var userScore = highscoreScreen.textContent;
+  //   //create the new data
+  //   var newData = {
+  //     initial: userInput,
+  //     score: userScore,
+  //   }
+  //   //add the new data to the old data
+  //   localData.push(newData)
+  //   //store it 
+  //   window.localStorage.setItem("data", JSON.stringify(localData));
+  //redirect the user to other html
 }
