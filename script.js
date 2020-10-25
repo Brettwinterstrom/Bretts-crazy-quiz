@@ -130,58 +130,23 @@ function endQuiz() {
   //hide questions
   questionContainer.classList.add('hide');
 }
-/*ToDo:
 
-submit button function
-  //get local staory data which is a stringified array of objects
-  //add new {
-    initials: "BKL",
-    score: "number"
-  }
-  //add to local storage
-  //go to highscores screen window.location.href = "url"
-
-  scores.js
-
-  get the local storage data
-  then show it on theUI
-
-  JSON.parse
-  JSON.stringify
-
-  */
 document.querySelector(".submit-btn").addEventListener("click", storeData);
 const inpKey = document.getElementById("inpKey")
 const lsOutput = document.getElementById("lsOutput")
 
 function storeData() {
+  endScreen.classList.add('hide');
+  highscoreScreen.classList.remove('hide');
   //get the input box value in a var
   var userInput = document.querySelector("#end-screen input")
   // check if input is not empty
-  const key = inpKey.value;
+  // const key = inpKey.value;
 
   if (key) {
     localStorage.setItem(key, score);
     location.reload()
   }
 
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
 
-    lsOutput.innerHTML += `${key}: ${value}`
-  }
-  // if (userInput !== "") {
-  //   //get the old data
-  //   var localData = JSON.parse(window.localStorage.getItem("data")) || [];
-  //   var userScore = highscoreScreen.textContent;
-  //   //create the new data
-  //   var newData = {
-  //     initial: userInput,
-  //     score: userScore,
-  //   }
-  //   //add the new data to the old data
-  //   localData.push(newData)
-  //   //store it 
-  //   window.localStorage.setItem("data", JSON.stringify(localData));
-  //redirect the user to other html
 }
